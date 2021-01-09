@@ -1,0 +1,9 @@
+  
+*.layout
+*.depend
+obj/
+bin/
+build/
+*.txt
+*.o
+*.exe
