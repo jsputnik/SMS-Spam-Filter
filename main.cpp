@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
     Bayes x;
-    x.readData();
+    x.loadAttributes();
     cout << "Hello world!" << endl;
     return 0;
 }

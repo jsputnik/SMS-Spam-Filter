@@ -12,17 +12,13 @@ using namespace std;
 class Bayes
 {
 private:
-    vector <string> spamWords;
-    vector <string> hamWords;
-    vector <int> spamCounter;
-    vector <int> hamCounter;
-
-    vector<Data> testData; //
+    vector<Data> testData;
     vector<Attribute> attributes;
-    int wordsCounter;
+    int wordsCounter = 0;
 public:
     void loadData(Data data); //read one set of data
-    void readData();
+    void loadAttributes();
+    void incWordsCounter() {++wordsCounter;}
     void print();
     void printA(vector <Attribute> x);
 };

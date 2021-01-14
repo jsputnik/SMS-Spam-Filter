@@ -17,5 +17,6 @@ public:
     void calcHamProb();
     void calcSpamProb();
     std::string getWord() {return word;}
+    void setWord(std::string word) {this->word = word;}
 };
 #endif // ATTRIBUTE_H_INCLUDED
