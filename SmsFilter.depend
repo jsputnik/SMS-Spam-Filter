@@ -7,10 +7,10 @@
 	"Attribute.h"
 	<bits/stdc++.h>
 
-1610623166 source:c:\users\iwo\documents\pw\pszt\smsfilter\attribute.cpp
+1610652064 source:c:\users\iwo\documents\pw\pszt\smsfilter\attribute.cpp
 	"Attribute.h"
 
-1610625177 c:\users\iwo\documents\pw\pszt\smsfilter\attribute.h
+1610652265 c:\users\iwo\documents\pw\pszt\smsfilter\attribute.h
 	<iostream>
 
 1610626720 source:c:\users\iwo\documents\pw\pszt\smsfilter\data.cpp
@@ -19,4 +19,16 @@
 1610624328 c:\users\iwo\documents\pw\pszt\smsfilter\data.h
 	<iostream>
 	<vector>
+
+1610651855 source:c:\users\iwo\documents\pw\pszt\smsfilter\main.cpp
+	<iostream>
+	"Bayes.h"
+
+1610651902 c:\users\iwo\documents\pw\pszt\smsfilter\bayes.h
+	<iostream>
+	<fstream>
+	<string>
+	"Data.h"
+	"Attribute.h"
+	<bits/stdc++.h>
 

@@ -16,5 +16,6 @@ public:
     void incSpamCounter() {++spamCounter;}
     void calcHamProb();
     void calcSpamProb();
+    std::string getWord() {return word;}
 };
 #endif // ATTRIBUTE_H_INCLUDED
