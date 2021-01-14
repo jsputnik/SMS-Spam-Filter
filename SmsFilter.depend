@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1610622478 source:c:\users\iwo\documents\pw\pszt\smsfilter\bayes.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<bits/stdc++.h>
+
+1610623166 source:c:\users\iwo\documents\pw\pszt\smsfilter\attribute.cpp
+	"Attribute.h"
+
+1610625177 c:\users\iwo\documents\pw\pszt\smsfilter\attribute.h
+	<iostream>
+
+1610626720 source:c:\users\iwo\documents\pw\pszt\smsfilter\data.cpp
+	"Data.h"
+
+1610624328 c:\users\iwo\documents\pw\pszt\smsfilter\data.h
+	<iostream>
+	<vector>
+
