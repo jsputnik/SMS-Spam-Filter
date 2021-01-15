@@ -12,11 +12,12 @@ private:
 public:
     Attribute();
     void print();
-    void incHamCounter() {++hamCounter;}
-    void incSpamCounter() {++spamCounter;}
+    void incCounter(std::string type);
     void calcHamProb();
     void calcSpamProb();
     std::string getWord() {return word;}
     void setWord(std::string word) {this->word = word;}
+    float getHamCounter() {return hamCounter;}
+    float getSpamCounter() {return spamCounter;}
 };
 #endif // ATTRIBUTE_H_INCLUDED

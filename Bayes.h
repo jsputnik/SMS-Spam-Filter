@@ -16,10 +16,12 @@ private:
     vector<Attribute> attributes;
     int wordsCounter = 0;
 public:
-    void loadData(Data data); //read one set of data
-    void loadAttributes();
+    bool loadMessage(fstream& file, string& type, string& msg); //read one set of data
+    bool loadData(fstream& file);
+    bool loadAttributes(fstream& file);
     void incWordsCounter() {++wordsCounter;}
-    void print();
+    void printAttributes();
     void printA(vector <Attribute> x);
 };
 #endif // BAYES_H_INCLUDED
+
