@@ -8,18 +8,40 @@ void Bayes::printAttributes() {
     }
 }
 
+void Bayes::count(fstream& file) {
+    string firstLine, type, msg, word;
+    getline(file, firstLine, '\n'); //cleaning 1st line v1,v2
+    while(loadMessage(file, type, msg)) {
+        ++dataCounter;
+        for (unsigned int i = 0; i < msg.size(); ++i) {
+            if (isalpha(msg[i]) || isdigit(msg[i])) {
+                word += msg[i];
+            }
+            else {
+                if (!word.empty()) {
+                    word.clear();
+                    ++wordsCounter;
+                }
+            }
+        }
+        type.clear();
+        msg.clear();
+    }
+}
+
 //load type of msg into type, text of the msg into msg
 bool Bayes::loadMessage(fstream& file, string& type, string& msg) {
-    string tmp;
+    //string tmp;
     getline(file, type, ','); //because of structure
     if(type.empty()) {
         return false;
     }
-    //load one message (until ,,,)
-    while(!(msg[msg.size()-1] == ',' && msg[msg.size()-2] == ',' && msg[msg.size()-3] == ',')) {
-        getline(file, tmp, '\n');
-        msg += tmp;
+    //load one message (until \n)
+    getline(file, msg, '\n');
+    if(msg.empty()) {
+        return false;
     }
+    //msg += tmp;
     return true;
 }
 
@@ -40,6 +62,7 @@ bool Bayes::loadData(fstream& file) {
             if (!word.empty()) {
                 data.addWord(word);
                 word.clear();
+                //++wordsCounter;
             }
         }
     }
@@ -87,7 +110,7 @@ bool Bayes::loadAttributes(fstream& file) {
                         attributes.push_back(newAttr);
                     }
                     word.clear();
-                    ++wordsCounter;
+                    //++wordsCounter;
                 }
             }
         }

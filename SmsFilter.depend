@@ -12,11 +12,11 @@
 	<iostream>
 	<vector>
 
-1610740730 source:c:\users\iwo\documents\pw\pszt\smsfilter\main.cpp
+1610798322 source:c:\users\iwo\documents\pw\pszt\smsfilter\main.cpp
 	<iostream>
 	"Bayes.h"
 
-1610740098 c:\users\iwo\documents\pw\pszt\smsfilter\bayes.h
+1610796371 c:\users\iwo\documents\pw\pszt\smsfilter\bayes.h
 	<iostream>
 	<fstream>
 	<string>
@@ -24,7 +24,7 @@
 	"Attribute.h"
 	<bits/stdc++.h>
 
-1610741125 source:c:\users\iwo\documents\pw\pszt\smsfilter\bayes.cpp
+1610800542 source:c:\users\iwo\documents\pw\pszt\smsfilter\bayes.cpp
 	"Bayes.h"
 	"Attribute.h"
 	"Data.h"
