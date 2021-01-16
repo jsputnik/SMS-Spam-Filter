@@ -14,19 +14,25 @@ class Bayes
 private:
     vector<Data> testData;
     vector<Attribute> attributes;
-    int wordsCounter = 0;
-    int dataCounter = 0;
+    int wordsCounterLearningData = 0;
+    int wordsCounter;
+    int dataCounter;
 public:
-    bool loadMessage(fstream& file, string& type, string& msg); //read one set of data
-    bool loadData(fstream& file);
-    bool loadAttributes(fstream& file);
-    void incWordsCounter() {++wordsCounter;}
+    Bayes(int wordsCounter, int dataCounter);
+    void incWordsCounterLearningData() {++wordsCounterLearningData;}
     void incDataCounter() {++dataCounter;}
     void printAttributes();
-    void printA(vector <Attribute> x);
-    void count(fstream& file);
+    void printTestData();
+    void printCounters();
+    int getWordsCounterLearningData() {return wordsCounterLearningData;}
     int getWordsCounter() {return wordsCounter;}
     int getDataCounter() {return dataCounter;}
+    vector<Attribute>& getAttributes() {return attributes;}
+    vector<Data>& getTestData() {return testData;}
+    static bool loadMessage(fstream& file, string& type, string& msg); //read one set of data
+    static void loadIntoMemory(fstream& file, vector<string>& messages, int& wordsCounter, int& dataCounter);
+    void loadAttributes(vector<string>& learningMessages);
+    void loadData(string testMessage);
 };
 #endif // BAYES_H_INCLUDED
 
