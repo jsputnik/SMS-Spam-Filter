@@ -9,15 +9,6 @@ Data::Data(string actual_type) {
     spamProb = 0;
 }
 
-void Data::setType() {
-    if (hamProb >= spamProb) {
-        type = "ham";
-    }
-    else {
-        type = "spam";
-    }
-}
-
 void Data::print() {
     cout << "Actual type: " << actual_type << endl;
     cout << "Assigned type: " << type << endl;
@@ -25,5 +16,26 @@ void Data::print() {
     for(vector<string>::iterator it = words.begin(); it != words.end(); it++) {
         cout << *it << "|";
     }
-    cout << endl;
+    cout << endl << endl;
+}
+
+void Data::updateProb(float probForHam, float probForSpam) {
+    if (probForHam == 0) {
+        probForHam = 0.001;
+    }
+    if (probForSpam == 0) {
+        probForSpam = 0.001;
+    }
+    hamProb *= probForHam;
+    spamProb *= probForSpam;
+}
+
+bool Data::classify() {
+    if (hamProb >= spamProb) {
+        type = "ham";
+    }
+    else {
+        type = "spam";
+    }
+    return (actual_type == type);
 }

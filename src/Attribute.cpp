@@ -2,11 +2,14 @@
 
 using namespace std;
 
-Attribute::Attribute() {
-    hamCounter = 0;
-    spamCounter = 0;
-    hamProb = 0;
-    spamProb = 0;
+void Attribute::print() {
+    cout << "Word: " << word << ", ";
+    cout << "hamCounter: " << hamCounter << ", ";
+    cout << "spamCounter: " << spamCounter << ", ";
+    cout << "probIfHam: " << probIfHam << ", ";
+    cout << "probIfSpam: " << probIfSpam << ", ";
+    cout << "occurrenceInHam: " << occurrenceInHam << ", ";
+    cout << "occurrenceInSpam: " << occurrenceInSpam << endl;
 }
 
 void Attribute::incCounter(string type) {
@@ -19,4 +22,21 @@ void Attribute::incCounter(string type) {
     else {
         cerr << "Error in incCounter: undefined value for 'type'" << endl;
     }
+}
+
+void Attribute::incOccurrence(string type) {
+    if (type == "ham") {
+        ++occurrenceInHam;
+    }
+    else if (type == "spam") {
+        ++occurrenceInSpam;
+    }
+    else {
+        cerr << "Error in incOccurrence: undefined value for 'type'" << endl;
+    }
+}
+
+void Attribute::calcHamAndSpamProb(int hamMsgsNumber, int spamMsgsNumber) {
+    probIfHam = (float)occurrenceInHam / (float)hamMsgsNumber;
+    probIfSpam = (float)occurrenceInSpam / (float)spamMsgsNumber;
 }
