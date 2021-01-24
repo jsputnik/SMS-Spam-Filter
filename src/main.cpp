@@ -40,6 +40,7 @@ int main()
         //bayes.printAttributes();
         //bayes.printTestData();
         bayes.print();
+        cout << "Attributes quantity: " << bayes.getAttributes().size() << endl;
 
 //        cout << "Learning messages: " << endl;
 //        for (unsigned int i = 0; i < learningMessages.size(); ++i) {
