@@ -9,6 +9,7 @@ private:
     int spamCounter = 0; //how many times in spam msgs with repeats in the same msg, NOT USED IN ALGORITHM
     int occurrenceInHam = 0; //how many times in ham msgs without repeats in the same msg
     int occurrenceInSpam = 0; //how many times in spam msgs without repeats in the same msg
+    //probabilities are multiplied by 1000 because they are too low for float to distinguish
     float probIfHam = 0; //probability of word provided it's in ham P(x|C=HAM)
     float probIfSpam = 0; //probability of word provided it's in spam P(x|C=SPAM)
 public:
