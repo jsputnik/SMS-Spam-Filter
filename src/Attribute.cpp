@@ -37,6 +37,6 @@ void Attribute::incOccurrence(string type) {
 }
 
 void Attribute::calcHamAndSpamProb(int hamMsgsNumber, int spamMsgsNumber) {
-    probIfHam = (float)occurrenceInHam / (float)hamMsgsNumber;
-    probIfSpam = (float)occurrenceInSpam / (float)spamMsgsNumber;
+    probIfHam = 1000 * (float)occurrenceInHam / (float)hamMsgsNumber;
+    probIfSpam = 1000 * (float)occurrenceInSpam / (float)spamMsgsNumber;
 }

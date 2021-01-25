@@ -65,12 +65,15 @@ void Bayes::loadAttributes(vector<string>& learningMessages) {
             else {
                 if (!word.empty()) {
                     //find if appeared in attributes
-                    for (unsigned int i = 0; i < word.size(); ++i) {
-                        word[i] = tolower(word[i]);
+//                    for (unsigned int i = 0; i < word.size(); ++i) {
+//                        word[i] = tolower(word[i]);
+//                    }
+                    if (isLink(word)) {
+                        word = "'link'";
                     }
-                    /***************************************
-                    *check if link, tolower, check if number
-                    ****************************************/
+                    if (isPhoneNumber(word)) {
+                        word = "'number'";
+                    }
                     bool found = false;
                     for (unsigned int i = 0; i < attributes.size(); ++i) {
                         if (word == attributes[i].getWord()) {
@@ -122,21 +125,42 @@ void Bayes::loadData(string testMessage) {
         }
         else {
             if (!word.empty()) {
-                for (unsigned int i = 0; i < word.size(); ++i) {
-                    word[i] = tolower(word[i]);
+//                for (unsigned int i = 0; i < word.size(); ++i) {
+//                    word[i] = tolower(word[i]);
+//                }
+                if (isLink(word)) {
+                    word = "'link'";
                 }
-                /***************************************
-                *check if link, tolower, check if number
-                ****************************************/
+                if (isPhoneNumber(word)) {
+                    word = "'number'";
+                }
                 data.addWord(word);
                 word.clear();
             }
         }
     }
-    //cout << "original msg: " << msg << endl;
-    //data.print();
-    //cout << endl;
     testData.push_back(data);
+}
+
+bool Bayes::isLink(string word) {
+    if (word.find("www") == string::npos) {
+        return false;
+    }
+    return true;
+}
+
+bool Bayes::isPhoneNumber(string word) {
+    int digitCounter = 0;
+    int letterCounter = 0;
+    for (unsigned int i = 0; i < word.size(); ++i) {
+        if (isdigit(word[i])) {
+            ++digitCounter;
+        }
+        if (isalpha(word[i])) {
+            ++letterCounter;
+        }
+    }
+    return (digitCounter > letterCounter && digitCounter > 3);
 }
 
 void Bayes::calcProbabilities(int learningDataQuantity) {
@@ -184,12 +208,20 @@ void Bayes::classify() {
     success = (float)successfullAssignments / (float)(successfullAssignments + unsuccessfullAssignments);
 }
 
+void Bayes::createIncorrectAssignments(vector<Data>& incorrectAssignments) {
+    for (unsigned int i = 0; i < testData.size(); ++i) {
+        if (!testData[i].ifAssignedCorrectly()) {
+            incorrectAssignments.push_back(testData[i]);
+        }
+    }
+}
+
 void Bayes::print() {
     cout << "WordsCounterLearningData: " << wordsCounterLearningData << " - how many words are in learning data, NOT USED IN ALGORITHM" << endl;
     cout << "HamCounter: " << hamCounter << " - how many msgs are spam in x learning data" << endl;
     cout << "SpamCounter: " << spamCounter << " - how many msgs are spam in x learning data" <<endl;
-    cout << "HamProb: " << hamProb << " - number of ham data / all data P(C=HAM)" << endl;
-    cout << "SpamProb: " << spamProb << " - number of spam data / all data P(C=SPAM)" << endl;
+    cout << "HamProb: " << hamProb << " - number of ham data / all learning data P(C=HAM)" << endl;
+    cout << "SpamProb: " << spamProb << " - number of spam data / all learning data P(C=SPAM)" << endl;
     cout << "WordsCounterInHam: " << wordsCounterInHam << " - words with repeats in all ham data, NOT USED IN ALGORITHM" << endl;
     cout << "WordsCounterInSpam: " << wordsCounterInSpam << " - words with repeats in all spam data, NOT USED IN ALGORITHM" << endl;
     cout << "Success: " << success << " - % of successfull assignments" << endl;

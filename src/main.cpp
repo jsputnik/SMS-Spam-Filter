@@ -23,7 +23,7 @@ int main()
         int index = i * testDataQuantity; //starting index in messages where test data begins
         testMessages.insert(testMessages.end(), messages.begin() + index, messages.begin() + index + testDataQuantity); //adding test data
         learningMessages = messages;
-        learningMessages.erase(learningMessages.begin() + index, learningMessages.begin() + index + testDataQuantity); //removing test data from a copy of messages
+        learningMessages.erase(learningMessages.begin() + index, learningMessages.begin() + index + testDataQuantity); //filling learning data by removing test data from a copy of messages
         Bayes bayes;
         cout << "Learning..." << endl;
         bayes.loadAttributes(learningMessages); //fill attributes (learning data)
@@ -31,16 +31,29 @@ int main()
         bayes.calcWordsCounterInSpamAndHam(); //purely for analytics
         bayes.calcConditionalProbabilitiesForLearningData(); //calculate P(xi|C = SPAM) and P(xi|C = HAM) for all attributes in X (attributes)
         cout << "Testing..." << endl;
+        //load into testData vector all the test data
         for (unsigned int j = 0; j < testMessages.size(); ++j) {
             bayes.loadData(testMessages[j]);
         }
         bayes.calcConditionalProbabilitiesForTestData(); //calculate P(C=SPAM|x1,x2,x3,...) and P(C=HAM|x1,x2,x3,...)
-        bayes.classify(); //assighn class and grade model
+        bayes.classify(); //assign class and grade model
+        vector<Data> incorrectAssignments;
+        bayes.createIncorrectAssignments(incorrectAssignments); //save incorrect assignments into Data vector
+
         models.push_back(bayes);
         //bayes.printAttributes();
         //bayes.printTestData();
+        cout << "Incorrectly assigned test data: " << endl;
+        for (unsigned int j = 0; j < incorrectAssignments.size(); ++j) {
+            incorrectAssignments[j].print();
+        }
+        cout << "Incorrectly assigned test data size: " << incorrectAssignments.size() << endl;
+//        for (unsigned int j = 0; j < bayes.getTestData().size(); ++j) {
+//            if (bayes.getTestData()[j].getType() == "ham") {
+//                cout << "++spam" << endl;
+//            }
+//        }
         bayes.print();
-        cout << "Attributes quantity: " << bayes.getAttributes().size() << endl;
 
 //        cout << "Learning messages: " << endl;
 //        for (unsigned int i = 0; i < learningMessages.size(); ++i) {
@@ -76,9 +89,9 @@ int main()
         ******************************************************/
     }
 
-    for (unsigned int i = 0; i < messages.size(); ++i) {
-        cout << messages[i] << endl;
-    }
+//    for (unsigned int i = 0; i < messages.size(); ++i) {
+//        cout << messages[i] << endl;
+//    }
 
     cout << endl << "Words counter: " << wordsCounter << endl;
     cout << "Data counter: " << dataCounter << endl;
