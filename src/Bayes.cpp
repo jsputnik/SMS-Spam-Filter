@@ -229,10 +229,6 @@ void Bayes::print() {
 
 void Bayes::printAttributes() {
     for (unsigned int i = 0; i < attributes.size(); ++i) {
-//      if (attributes[i].getSpamCounter() > 20 || attributes[i].getHamCounter() > 20) {
-//          //cout << attributes[i].getWord() << ", ham: " << attributes[i].getHamCounter() << ", spam: " << attributes[i].getSpamCounter() << endl;
-//          attributes[i].print();
-//      }
         attributes[i].print();
     }
 }
