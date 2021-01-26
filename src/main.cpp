@@ -48,37 +48,17 @@ int main()
             incorrectAssignments[j].print();
         }
         cout << "Incorrectly assigned test data size: " << incorrectAssignments.size() << endl;
-//        for (unsigned int j = 0; j < bayes.getTestData().size(); ++j) {
-//            if (bayes.getTestData()[j].getType() == "ham") {
-//                cout << "++spam" << endl;
-//            }
-//        }
         bayes.print();
-
-//        cout << "Learning messages: " << endl;
-//        for (unsigned int i = 0; i < learningMessages.size(); ++i) {
-//            cout << learningMessages[i] << endl;
-//        }
-//
-//        cout << "Test messages: " << endl;
-//        for (unsigned int l = 0; l < testMessages.size(); ++l) {
-//            cout << testMessages[l] << endl;
-//        }
-//        cout << "Index: " << index << endl;
-//        cout << "Learning messages size: " << learningMessages.size() << endl;
-//        cout << "Test messages size: " << testMessages.size() << endl;
-//        cout << "Attributes quantity: " << bayes.getAttributes().size() << endl;
-//        cout << "Test data quantity: " << bayes.getTestData().size() << endl;
 
         /******************************************************
         * vv comment this section if dont want any interaction
         ******************************************************/
         string command;
-        cout << "Next model?" << endl << "y/n/q" << endl;
+        cout << "Next?" << endl << "y/n/q" << endl;
         cin >> command;
         while (command != "y" && command != "q") {
             command.clear();
-            cout << "Next model?" << endl << "y/n/q" << endl;
+            cout << "Next?" << endl << "y/n/q" << endl;
             cin >> command;
         }
         if (command == "q") {
@@ -89,18 +69,18 @@ int main()
         ******************************************************/
     }
 
-//    for (unsigned int i = 0; i < messages.size(); ++i) {
-//        cout << messages[i] << endl;
-//    }
-
     cout << endl << "Words counter: " << wordsCounter << endl;
     cout << "Data counter: " << dataCounter << endl;
     cout << "testDataQuantity: " << testDataQuantity << endl;
     cout << "learningDataQuantity: " << learningDataQuantity << endl << endl;
     cout << "Models success: " << endl;
+    float average = 0;
     for (unsigned int i = 0; i < models.size(); ++i) {
+        average += models[i].getSuccess();
         cout << models[i].getSuccess() * 100 << "%" << endl;
     }
+    average = average * 100 / k;
+    cout << "Average success: " << average << "%" << endl;
     cout << endl << "End" << endl;
     return 0;
 }
